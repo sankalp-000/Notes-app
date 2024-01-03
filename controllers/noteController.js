@@ -12,7 +12,7 @@ const getNotes = async (req, res) => {
         }
         res.status(200).json(notes);
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
@@ -30,14 +30,14 @@ const getNoteById = async (req, res) => {
 
         res.status(200).json(note);
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
 
 const createNote = async (req, res) => {
     try {
-        const userId = req.userId;
+                const userId = req.userId;
         const { title, content } = req.body;
 
         const newNote = new Note({
@@ -46,11 +46,11 @@ const createNote = async (req, res) => {
             user: userId,
         });
 
-        await newNote.save();
+                await newNote.save();
 
         res.status(201).json({ message: 'Note created successfully', note: newNote });
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
@@ -73,7 +73,7 @@ const updateNote = async (req, res) => {
 
         res.status(200).json({ message: 'Note updated successfully', note: updatedNote });
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
@@ -91,7 +91,7 @@ const deleteNote = async (req, res) => {
 
         res.status(200).json({ message: 'Note deleted successfully', note: deletedNote });
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
@@ -127,7 +127,7 @@ const shareNote = async (req, res) => {
 
         res.status(200).json({ message: 'Note shared successfully' });
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
@@ -146,7 +146,7 @@ const searchNotes = async (req, res) => {
 
         res.status(200).json(results);
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
