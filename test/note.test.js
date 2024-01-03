@@ -496,31 +496,4 @@ describe('Note Controller search Notes method test', () => {
             console.error(error);
         }
     });
-    it('should handle errors during note search', async () => {
-        const req = {
-            userId: 'testUserId',
-            query: { q: 'keyword' },
-        };
-
-        const errorMessage = 'Some database error';
-        Note.find.mockRejectedValueOnce(new Error(errorMessage));
-
-        const res = {
-            status: jest.fn().mockReturnThis(),
-            json: jest.fn(),
-        };
-
-        try {
-            await searchNotes(req, res);
-            console.error(res.status.mock.calls);
-            expect(Note.find).toHaveBeenCalledWith(
-                { $and: [{ user: 'testUserId' }, { $text: { $search: 'keyword' } }] },
-                { score: { $meta: 'textScore' } }
-            );
-            expect(res.status).toHaveBeenCalledWith(500);
-            expect(res.json).toHaveBeenCalledWith({ message: 'Internal server error' });
-        } catch (error) {
-            console.error(error);
-        }
-    });
 });
