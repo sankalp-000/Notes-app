@@ -24,7 +24,7 @@ router.put('/:id', updateNote);
 router.delete('/:id', deleteNote);
 
 // New endpoint to share a note
-router.post('/share/:id', shareNote);
+router.post('/:id/share', shareNote);
 
 
 module.exports = router;

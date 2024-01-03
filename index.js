@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const rateLimit = require('express-rate-limit');
 const authRoutes = require('./routes/authRoute');
 const noteRoutes = require('./routes/noteRoute');
 
@@ -23,6 +24,12 @@ db.once('open', () => {
     console.log('Connected to MongoDB');
 });
 
+const limiter = rateLimit({
+    windowMs: 1 * 60 * 1000, // 1 minute
+    max: 10, // 10 request per minute per ip
+});
+
+app.use(limiter);
 
 // Routes
 app.use('/api/auth', authRoutes);
