@@ -8,9 +8,9 @@ const verifyToken = (req, res, next) => {
     }
 
     jwt.verify(token.replace('Bearer ', ''), process.env.JWT_SECRET, (err, decoded) => {
-        console.log(token);
-        console.log(process.env.JWT_SECRET);
-        console.log(err);
+        // console.log(token);
+        // console.log(process.env.JWT_SECRET);
+        // console.log(err);
         if (err) {
             return res.status(401).json({ message: 'Unauthorized - Invalid token' });
         }
