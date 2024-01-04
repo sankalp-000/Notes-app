@@ -11,7 +11,7 @@ This repository contains the implementation of a secure RESTful API for managing
 - [Search Functionality](#search-functionality)
 - [Testing](#testing)
 - [Getting Started](#getting-started)
-- 
+  
 ## Technical Stack
 
 The implementation of the API is built using the following technologies:
