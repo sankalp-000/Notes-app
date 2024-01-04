@@ -67,7 +67,7 @@ Follow these instructions to set up and run the project locally:
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/your-username/notes-api.git
+   git clone https://github.com/sankalp-000/Notes-app.git
    ```
 
 2. **install Dependencies**
