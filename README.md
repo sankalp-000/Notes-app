@@ -162,7 +162,7 @@ now go to postman and hit any api you want and test the response.
    7. search notes using keyword:
    ```
    url : http://localhost:3000/api/notes/search?q=banana
-   request type: DELETE
+   request type: GET
    add header: (key:Authorization, value: Bearer <token copied from previous step>)
    in query params: add whatever keyword you want to search (ex : banana)
    hit send button.
