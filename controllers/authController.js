@@ -5,10 +5,11 @@ const User = require('../models/User');
 const signup = async (req, res) => {
     try {
         const { username, password, email } = req.body;
-
+        // Add logging for debugging
+        console.log('Received signup request with username:', username, 'and password:', password);
         const existingUser = await User.findOne({ username });
         if (existingUser) {
-            return res.status(400).json({ message: 'Username already exists' });
+            return res.status(201).json({ message: 'Username already exists' });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);

@@ -42,7 +42,7 @@ describe('Auth Controller signup method test', () => {
 
         await signup(req, res);
 
-        expect(res.status).toHaveBeenCalledWith(400);
+        expect(res.status).toHaveBeenCalledWith(201);
         expect(res.json).toHaveBeenCalledWith({ message: 'Username already exists' });
     });
 

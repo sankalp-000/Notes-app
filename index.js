@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const rateLimit = require('express-rate-limit');
+const throttle = require('express-throttle');
 const authRoutes = require('./routes/authRoute');
 const noteRoutes = require('./routes/noteRoute');
 
@@ -26,11 +27,19 @@ db.once('open', () => {
 
 const limiter = rateLimit({
     windowMs: 1 * 60 * 1000, // 1 minute
-    max: 10, // 10 request per minute per ip
+    max: 30, // 30 requests per minute per IP
 });
 
 app.use(limiter);
 
+const throttleSettings = {
+    burst: 30, // 30 requests in a burst
+    rate: process.env.THROTTLE_RATE || '15/min', // 15 requests per minute per IP
+    ip: true,
+};
+
+// Use throttle middleware
+app.use(throttle(throttleSettings));
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/notes', noteRoutes);
