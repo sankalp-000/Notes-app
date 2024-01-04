@@ -68,3 +68,129 @@ Follow these instructions to set up and run the project locally:
 
    ```bash
    git clone https://github.com/your-username/notes-api.git
+   ```
+
+2. **install Dependencies**
+
+   ```
+   npm install
+   ```
+
+## Run the application
+
+run the following command: 
+   ```
+   npm start
+   ```
+
+now go to postman and hit any api you want and test the response.
+1. Signup: 
+```
+   url : http://localhost:3000/api/auth/signup
+   request type: POST
+   add header: key: (Content-Type , value: application/json) 
+   sample Body : 
+   {
+     "username": "ranjan1",
+     "password": "123456",
+     "email":"ranjan@gmail.com"
+   }
+   hit send button.
+```
+   
+
+2. Login: 
+```
+   url : http://localhost:3000/api/auth/login
+   request type: POST
+   add header: (key: Content-Type , value: application/json) 
+   sample Body : 
+   {
+    "username": "ranjan",
+    "password": "123456"
+   }
+   hit send button.
+   copy the token recieved on response.
+
+```
+   3.  create a new note: 
+   ```
+   url : http://localhost:3000/api/notes
+   request type: POST
+   add header: (key:Content-Type , value: application/json) 
+   add header: (key:Authorization, value: Bearer <token copied from previous step>)
+   sample body :
+   {
+    "title": "banana Fruit ranjan",
+    "content": "peel it and then we eat it."
+   }
+   hit send button.
+   ```
+
+   4. get all notes for a logged in user: 
+   ```
+   url : http://localhost:3000/api/notes
+   request type: GET
+   add header: (key:Authorization, value: Bearer <token copied from login step>) 
+   hit send button.
+   ```
+
+   5.  update a  note: 
+   ```
+   url : http://localhost:3000/api/notes/:id
+   request type: PUT
+   add header: (key:Content-Type , value: application/json) 
+   add header: (key:Authorization, value: Bearer <token copied from previous step>)
+   in path variable: add note id of any note(you can get this from get all notes api)
+   sample body :
+   {
+    "title": "banana Fruit updated",
+    "content": "peel it and then we eat it."
+   }
+   hit send button.
+   ```
+
+   6.  delete a  note by note id: 
+   ```
+   url : http://localhost:3000/api/notes/:id
+   request type: DELETE
+   add header: (key:Authorization, value: Bearer <token copied from previous step>)
+   in path variable: add note id of any note(you can get this from get all notes api)
+   hit send button.
+   ```
+  
+   7. search notes using keyword:
+   ```
+   url : http://localhost:3000/api/notes/search?q=banana
+   request type: DELETE
+   add header: (key:Authorization, value: Bearer <token copied from previous step>)
+   in query params: add whatever keyword you want to search (ex : banana)
+   hit send button.
+   ```
+
+   8. share notes:
+   ```
+   url : http://localhost:3000/api/notes/:id/share
+   request type: POST
+   add header: (key:Content-Type , value: application/json) 
+   add header: (key:Authorization, value: Bearer <token copied from previous step>)
+   in path variable: add note id of any note(you can get this from get all notes api)
+   {
+    "sharedUsername": "sankalp" // enter username of any user you want to share.
+   }
+   hit send button.
+
+   ```
+
+## Run Unit Test
+run the following command:
+   ```
+   npm test
+   ```
+## check the Rate limit and request throtting
+
+in one of the terminal run the application by running "npm start" command.
+now add one more terminal in parallel and run the following command:
+   ```
+   node .\test\testRateLimit.js
+   ```
